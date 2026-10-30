@@ -8,7 +8,9 @@ serve:
 dev:
 	nikola auto
 
-# 部署：构建并部署到GitHub Pages，用法：make deploy msg="提交说明"
+# 部署：构建并部署到GitHub Pages
+# 用法：make deploy（使用默认提交说明）或 make deploy msg="提交说明"
+msg ?= 更新博客
 deploy:
 	nikola github_deploy -m "$(msg)"
 
