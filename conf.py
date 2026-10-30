@@ -1023,12 +1023,12 @@ RSS_COPYRIGHT_FORMATS = CONTENT_FOOTER_FORMATS
 #   disqus, discourse, facebook, intensedebate, isso, muut, commento,
 #   utterances
 # You can leave this option blank to disable comments.
-COMMENT_SYSTEM = ""
+COMMENT_SYSTEM = "utterances"
 # And you also need to add your COMMENT_SYSTEM_ID which
 # depends on what comment system you use. The default is
 # "nikolademo" which is a test account for Disqus. More information
 # is in the manual.
-COMMENT_SYSTEM_ID = ""
+COMMENT_SYSTEM_ID = "lovexuruomu/lovexuruomu.github.io"
 
 # Create index.html for page folders?
 # WARNING: if a page would conflict with the index file (usually
@@ -1422,7 +1422,16 @@ WARN_ABOUT_TAG_METADATA = False
 
 # Put in global_context things you want available on all your templates.
 # It can be anything, data, functions, modules, etc.
-GLOBAL_CONTEXT = {}
+GLOBAL_CONTEXT = {
+    "utterances_config": {
+        # 必需：每个页面 URL 对应一个 Issue（还有 "url"、"title" 可选）
+        "issue-term": "pathname",
+        # 跟随访客系统明暗模式，和 willy-theme 的日夜模式按钮很搭
+        "theme": "preferred-color-scheme",
+        # 自动创建的 Issue 会打上这个标签，方便你在 GitHub 里筛选
+        "label": "comments",
+    },
+}
 
 # Add functions here and they will be called with template
 # GLOBAL_CONTEXT as parameter when the template is about to be
