@@ -1,0 +1,23 @@
+{#  -*- coding: utf-8 -*- #}
+{# 分类资源注入：按文章分类输出对应主题 CSS 与跨分类预取资源。
+   所有文章页统一走 post.tmpl 调用本宏，新增分类只需在下方加一个分支。 #}
+
+{% macro head_for(post) %}
+    {% if post.meta('category') == '技术' %}
+        <link href="/assets/css/cat-tech.css" rel="stylesheet" type="text/css">
+        {# 跨分类预热：技术文章空闲时后台预取随笔页字体，切换分类不卡顿 #}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.2.6/500.css" as="style">
+        <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.2.6/700.css" as="style">
+        <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css" as="style">
+    {% elif post.meta('category') == '随笔' %}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        {# 字体 CSS 用 link 并行加载（不用 @import，避免串行阻塞渲染） #}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.2.6/500.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-sc@5.2.6/700.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css">
+        <link href="/assets/css/cat-essay.css" rel="stylesheet" type="text/css">
+    {% elif post.meta('category') == '汽水音乐' %}
+        <link href="/assets/css/cat-music.css" rel="stylesheet" type="text/css">
+    {% endif %}
+{% endmacro %}

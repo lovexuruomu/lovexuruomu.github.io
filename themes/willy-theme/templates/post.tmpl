@@ -3,6 +3,7 @@
 {% import 'post_header.tmpl' as pheader with context %}
 {% import 'comments_helper.tmpl' as comments with context %}
 {% import 'math_helper.tmpl' as math with context %}
+{% import 'cat_resources.tmpl' as catres with context %}
 {% extends 'base.tmpl' %}
 
 {% block extra_head %}
@@ -24,6 +25,7 @@
     {{ helper.twitter_card_information(post) }}
     {{ helper.meta_translations(post) }}
     {{ math.math_styles_ifpost(post) }}
+    {{ catres.head_for(post) }}
 {% endblock %}
 
 {% block content %}

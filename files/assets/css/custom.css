@@ -1,0 +1,221 @@
+/* ===== 全站布局：顶部轻导航 + 800px 居中容器 + 低饱和单色体系 =====
+   通过官方 custom.css 机制全站加载（willy 主题 USE_BUNDLES=False 时自动引用）。
+   移动端保留抽屉菜单，仅桌面端（>=1024px）切换为顶部轻导航。 */
+
+/* 低饱和单色：日间主文字深灰（非纯黑） */
+.theme {
+    --default-color: #374151;
+}
+
+/* 夜间：深灰底 + 浅灰文字 */
+#dark-mode:checked ~ .theme {
+    --inverse-color: #111827;
+    --default-color: #d1d5db;
+}
+
+/* 月亮切换按钮：圆角淡背景 hover */
+.dark-mode-label {
+    padding: 0.4rem;
+    border-radius: 9999px;
+    transition: background 0.15s ease;
+}
+.dark-mode-label:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+#dark-mode:checked ~ .theme .dark-mode-label:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+@media (min-width: 1024px) {
+    /* 整体容器：限定 800px 内容宽度、水平居中 */
+    .layout {
+        max-width: 800px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cover {
+        position: relative;
+        width: 100%;
+    }
+
+    /* 月亮按钮：标题右侧 */
+    .cover > div {
+        position: absolute;
+        top: 1.5rem;
+        right: 0;
+    }
+
+    /* 顶部轻导航：横排居中，下细分隔线 */
+    .menu {
+        width: 100%;
+        position: relative;
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        text-align: center;
+        padding: 0 0 0.75rem;
+        border-right-width: 0;
+        border-bottom: 1px solid #f3f4f6;
+    }
+    .menu ul {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .menu ul li {
+        margin-bottom: 0;
+    }
+    .menu ul li a {
+        color: #6b7280;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: color 0.15s ease;
+    }
+    .menu ul li a:hover {
+        color: var(--primary-color);
+    }
+    /* 当前页浅高亮 */
+    .menu ul li.active a {
+        color: var(--primary-color);
+    }
+
+    /* 主内容区占满窄容器 */
+    .content {
+        width: 100%;
+        padding-top: 1.75rem;
+    }
+}
+
+/* 夜间：顶部导航分割线 */
+#dark-mode:checked ~ .theme .menu {
+    border-bottom-color: #1f2937;
+}
+
+/* ===== 归档 / 分类 / 标签 列表页 ===== */
+
+.content .tagindex,
+.content .tagpage,
+.content .listpage {
+    line-height: 1.6;
+}
+
+/* 页面说明标题弱化：小字浅灰（标签和分类 / 关于 X 的文章 / 文章归档） */
+.content .tagindex header h1,
+.content .tagpage header h1,
+.content .listpage header h1 {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #9ca3af;
+    margin: 0 0 1.75rem;
+}
+
+/* 板块标题「分类」「标签」：更大加粗，配极简线性图标 */
+.content .tagindex h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.75rem;
+}
+.content .tagindex h2::before {
+    content: '';
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.5em;
+    vertical-align: -0.18em;
+    color: var(--primary-color);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+/* 「标签」区块：与「分类」拉开大间距，标签图标 */
+.content .tagindex h2:nth-of-type(2) {
+    margin-top: 2.5rem;
+}
+.content .tagindex h2:nth-of-type(2)::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z'/%3E%3Cline x1='7' y1='7' x2='7.01' y2='7'/%3E%3C/svg%3E");
+}
+#dark-mode:checked ~ .theme .content .tagindex h2 {
+    color: #e5e7eb;
+}
+
+/* 列表去项目符号 */
+.content .tagindex .postlist,
+.content .tagpage .postlist,
+.content .listpage .postlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 分类/标签总览链接 */
+.content .tagindex .postlist li {
+    padding: 0.35rem 0;
+}
+.content .tagindex .postlist a {
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+.content .tagindex .postlist a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+#dark-mode:checked ~ .theme .content .tagindex .postlist a {
+    color: #d1d5db;
+}
+
+/* 分类文章列表 / 归档年列表：行条目 + 极浅分隔线 */
+.content .tagpage .postlist li,
+.content .listpage .postlist li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+.content .tagpage .postlist li:last-child,
+.content .listpage .postlist li:last-child {
+    border-bottom: none;
+}
+#dark-mode:checked ~ .theme .content .tagpage .postlist li,
+#dark-mode:checked ~ .theme .content .listpage .postlist li {
+    border-bottom-color: #1f2937;
+}
+
+/* 日期：浅灰 */
+.content .tagpage .listdate,
+.content .listpage .listdate {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+}
+
+/* 文章标题链接 */
+.content .tagpage .listtitle,
+.content .listpage .listtitle {
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+.content .tagpage .listtitle:hover,
+.content .listpage .listtitle:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+#dark-mode:checked ~ .theme .content .tagpage .listtitle,
+#dark-mode:checked ~ .theme .content .listpage .listtitle {
+    color: #d1d5db;
+}
+
+/* 归档总览年份链接（无 listtitle 类） */
+.content .listpage .postlist a:not(.listtitle) {
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+.content .listpage .postlist a:not(.listtitle):hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+#dark-mode:checked ~ .theme .content .listpage .postlist a:not(.listtitle) {
+    color: #d1d5db;
+}
