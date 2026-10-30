@@ -1,0 +1,4 @@
+Sitemap: https://lovexuruomu.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: lovexuruomu.github.io

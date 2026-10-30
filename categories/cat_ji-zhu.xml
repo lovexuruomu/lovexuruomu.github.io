@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>徐若木的博客 (关于 技术 的文章)</title><link>https://lovexuruomu.github.io/</link><description></description><atom:link href="https://lovexuruomu.github.io/categories/cat_ji-zhu.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><copyright>Contents © 2026 &lt;a href="mailto:n.tesla@example.com"&gt;徐若木&lt;/a&gt; </copyright><lastBuildDate>Fri, 30 Oct 2026 02:19:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>如何在一周内将一个巨石工程实现国际化</title><link>https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/</link><dc:creator>徐若木</dc:creator><description>&lt;div&gt;&lt;p&gt;故事开始之前，先抛四个问题。放心，这里只提问，不剧透答案：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;为什么语言包里有一条词条，渲染出来是「请输入 $张三」？那个多出来的 &lt;code&gt;$&lt;/code&gt; 是谁的，为什么一直没人领？&lt;/li&gt;
+&lt;li&gt;为什么有人只是想验证一下「提取脚本跑两遍，结果应该一模一样」，第二天打开仓库——802 个文件被改，4279 条新词条躺在语言包里，其中还埋着两条把业务逻辑吞掉的尸体？&lt;/li&gt;
+&lt;li&gt;为什么一个只有 8 位字符的 hash（&lt;code&gt;1nmuo6rh&lt;/code&gt;）差点被当垃圾删除，而它背后站着三个还在服役的页面？&lt;/li&gt;
+&lt;li&gt;为什么「切换语言」这种看起来一行代码的事，最后的正式方案是「刷新整个页面」？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;四个问题背后是四类事故，四类事故背后是同一个真相&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/"&gt;阅读更多…&lt;/a&gt; (剩余阅读时间 6 分钟)&lt;/p&gt;&lt;/div&gt;</description><guid>https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/</guid><pubDate>Fri, 30 Oct 2026 01:59:51 GMT</pubDate></item></channel></rss>
