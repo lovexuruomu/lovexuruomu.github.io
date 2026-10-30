@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html \ prefix="
+        og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+    " vocab="http://ogp.me/ns" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Vue3+Vite使用 Puppeteer 代码零侵入进行SEO优化（SSR+Meta） | 徐若木的博客</title>
+<link href="../../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/rst_base.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/index.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/custom.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../../rss.xml">
+<link rel="canonical" href="https://lovexuruomu.github.io/posts/vue3%2Bviteshi-yong-puppeteer-dai-ma-ling-qin-ru-jin-xing-seoyou-hua-ssr%2Bmeta/">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="徐若木">
+<link rel="prev" href="../shao-nian-xing/" title="少年行" type="text/html">
+<link rel="next" href="../huan-ying-lai-dao-qi-shui-yin-le-ren-xu-ruo-mu-de-bo-ke/" title="欢迎来到汽水音乐人徐若木的博客" type="text/html">
+<meta property="og:site_name" content="徐若木的博客">
+<meta property="og:title" content="Vue3+Vite使用 Puppeteer 代码零侵入进行SEO优化（SSR+Meta）">
+<meta property="og:url" content="https://lovexuruomu.github.io/posts/vue3%2Bviteshi-yong-puppeteer-dai-ma-ling-qin-ru-jin-xing-seoyou-hua-ssr%2Bmeta/">
+<meta property="og:description" content="1. 背景
+【蓿岩竹清,已下线】个人博客在 2025 年 3 月完成了新一轮的全面迭代升级 —— 尽管日均流量寥寥无几，我依然乐此不疲地进行优化调整。本文将系统分享基于 Vue 多页面应用（SPA）的搜索引擎优化（SEO）完整解决方案，涵盖从路由配置到元数据管理的全流程实践经验，原理是可行的，请读者放心。
+灵感来源：https://blog.csdn.net/qq_34988304/article">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-30T14:30:56+08:00">
+</head>
+<body>
+    <input id="dark-mode" type="checkbox"><div class="theme">
+        <div class="layout">
+                <header class="cover"><h3 id="brand"><a href="../../" title="徐若木的博客" rel="home">
+            <span id="blog-title">徐若木的博客</span>
+        </a></h3>
+
+    <div>
+    <label class="dark-mode-label hover:dark-mode-label" for="dark-mode">
+        <!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><!-- Generator: Gravit.io --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation: isolate;" viewbox="0 0 416 416" width="30px" height="30px"><defs><clippath id="_clipPath_qEPwrMg7OPn6mDBNPkG6Nqc7qffgU4IC"><rect width="416" height="416"></rect></clippath></defs><g clip-path="url(#_clipPath_qEPwrMg7OPn6mDBNPkG6Nqc7qffgU4IC)"><path d=" M 304 88 C 304 57.38 299.49 26.39 288 0 C 364.43 33.27 416 111.32 416 200 C 416 319.29 319.29 416 200 416 C 111.32 416 33.27 364.43 0 288 C 26.39 299.49 57.38 304 88 304 C 207.29 304 304 207.29 304 88 Z "></path></g></svg></label>
+    
+    </div>
+
+
+    </header><input id="cool-menu" type="checkbox"><label for="cool-menu" class="cool-menu__label">
+        <svg class="cool-menu hover:cool-menu checked:cool-menu" viewbox="0 0 100 100" width="40" height="40" aria-hidden="true"><circle cx="50" cy="50" r="50" fill-opacity="0.5"></circle></svg></label>
+        <nav class="menu"><ul>
+<li><a href="../../archive.html">归档</a></li>
+                <li><a href="../../categories/">分类</a></li>
+                <li><a href="../../rss.xml">RSS 订阅</a></li>
+
+    
+    
+    
+    </ul></nav><main id="content" class="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title header__title" itemprop="headline name"><a href="../vue3%2Bviteshi-yong-puppeteer-dai-ma-ling-qin-ru-jin-xing-seoyou-hua-ssr%2Bmeta/" class="u-url hover:header__title__link">Vue3+Vite使用 Puppeteer 代码零侵入进行SEO优化（SSR+Meta）</a></h2>
+
+        <div class="metadata">
+            <span class="byline author vcard p-author h-card">
+            <span class="byline-name fn p-name" itemprop="author">
+                    徐若木
+            </span>
+            </span>
+            <span class="dateline">
+            <a class="article__meta__link hover:article__meta__link" href="../vue3%2Bviteshi-yong-puppeteer-dai-ma-ling-qin-ru-jin-xing-seoyou-hua-ssr%2Bmeta/" rel="bookmark">
+            <time class="published dt-published" datetime="2026-10-30T14:30:56+08:00" itemprop="datePublished" title="2026-10-30 14:30">2026-10-30 14:30</time></a>
+            </span>
+                <span class="commentline">            <a href="../vue3%2Bviteshi-yong-puppeteer-dai-ma-ling-qin-ru-jin-xing-seoyou-hua-ssr%2Bmeta/#utterances-thread">评论</a>
+
+
+                    | <span class="sourceline"><a class="article__meta__link hover:article__meta__link" href="../vue3%2Bviteshi-yong-puppeteer-dai-ma-ling-qin-ru-jin-xing-seoyou-hua-ssr%2Bmeta/index.md">源文件</a></span>
+
+        </span>
+</div>
+        
+    </header><section class="e-content entry-content" itemprop="articleBody text"><h3>1. 背景</h3>
+<p><a href="https://xuyanzhuqing.top/">【蓿岩竹清,已下线】</a>个人博客在 2025 年 3 月完成了新一轮的全面迭代升级 —— 尽管日均流量寥寥无几，我依然乐此不疲地进行优化调整。本文将系统分享基于 Vue 多页面应用（SPA）的搜索引擎优化（SEO）完整解决方案，涵盖从路由配置到元数据管理的全流程实践经验，原理是可行的，请读者放心。</p>
+<p>灵感来源：<a href="https://blog.csdn.net/qq_34988304/article/details/135835945">https://blog.csdn.net/qq_34988304/article/details/135835945</a></p>
+<h3>2. SSR 技术选型</h3>
+<p>现代 SSR 方案已高度框架化，应该优先选择生态成熟的方案（Next.js/Nuxt.js）。对于 Vue3 项目，Nuxt.js 提供了开箱即用的 SSR+SEO 解决方案，兼顾开发效率与性能，尤其适合内容型博客的场景。若需极致轻量化，这里采用nodejs 与 Puppeteer 原生实现实在是不想去大改现有逻辑。</p>
+<h4>2.1 ssr 方案对比</h4>
+<table>
+<thead><tr>
+<th>方案</th>
+<th>生态</th>
+<th>学习成本</th>
+<th>性能</th>
+<th>适用项目规模</th>
+<th>典型案例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Next.js</td>
+<td>React</td>
+<td>中</td>
+<td>★★★★☆</td>
+<td>中大型应用</td>
+<td>Twitter、Netflix Docs</td>
+</tr>
+<tr>
+<td>Nuxt.js</td>
+<td>Vue</td>
+<td>低</td>
+<td>★★★★</td>
+<td>中小型应用</td>
+<td>个人博客、企业官网</td>
+</tr>
+<tr>
+<td>SvelteKit</td>
+<td>Svelte</td>
+<td>低</td>
+<td>★★★★☆</td>
+<td>轻量应用</td>
+<td>Svelte 官网</td>
+</tr>
+<tr>
+<td>Angular Universal</td>
+<td>Angular</td>
+<td>高</td>
+<td>★★★☆</td>
+<td>企业级 Angular 项目</td>
+<td>Google Ads</td>
+</tr>
+<tr>
+<td>Astro</td>
+<td>多框架</td>
+<td>中</td>
+<td>★★★★★</td>
+<td>内容型网站</td>
+<td>Vue.js 官网（部分）</td>
+</tr>
+<tr>
+<td>puppeteer</td>
+<td>多框架</td>
+<td>中</td>
+<td>★★★☆</td>
+<td>中小型应用</td>
+<td>蓿岩竹清博客</td>
+</tr>
+</tbody>
+</table>
+<p>由于不想大改，所以我选择 <a href="https://pptr.nodejs.cn/guides/page-interactions">puppeteer</a></p>
+<h4>2.2 puppeteer 应用场景</h4>
+<table>
+<thead><tr>
+<th>场景</th>
+<th>技术实现</th>
+<th>案例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>SEO 预渲染</strong></td>
+<td>监听爬虫 UA，动态返回 Puppeteer 渲染的 HTML（如 prerender.io 方案）</td>
+<td>Vue/React SPA 博客的搜索引擎友好化</td>
+</tr>
+<tr>
+<td><strong>自动化测试</strong></td>
+<td>模拟用户登录、表单提交，集成 CI/CD（如 GitHub Actions）</td>
+<td>电商支付流程测试</td>
+</tr>
+<tr>
+<td><strong>数据抓取</strong></td>
+<td>处理反爬机制（如 JS 渲染、Cookies），提取结构化数据</td>
+<td>房价监控、竞品价格跟踪</td>
+</tr>
+<tr>
+<td><strong>报告生成</strong></td>
+<td>批量生成带样式的 PDF / 图片（结合模板引擎）</td>
+<td>周报自动生成（含图表、数据表格）</td>
+</tr>
+<tr>
+<td><strong>浏览器兼容性测试</strong></td>
+<td>模拟不同设备 / 浏览器环境（如移动端、旧版 Chrome）</td>
+<td>前端组件跨设备渲染验证</td>
+</tr>
+</tbody>
+</table>
+<h4>2.3 我的方案</h4>
+<ul>
+<li>vue：^3.4.21</li>
+<li>vite：^5.1.5</li>
+<li>vue-meta：3.0.0-alpha.10</li>
+<li>puppeteer：^24.4.0</li>
+</ul>
+<h3>3. SEO 实现 Meta 设置</h3>
+<p>安装依赖</p>
+<div class="code"><pre class="code literal-block">pnpm<span class="w"> </span>add<span class="w"> </span>vue-meta@3.0.0-alpha.10
+</pre></div>
+
+<p>main.js 中引入 vue-meta</p>
+<div class="code"><pre class="code literal-block"><span class="k">import</span><span class="w"> </span><span class="s1">'@/assets/main.css'</span>
+
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createApp</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'vue'</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createPinia</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'pinia'</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">router</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./router'</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">piniaPluginPersistedstate</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'pinia-plugin-persistedstate'</span>
+
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createMetaManager</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'vue-meta'</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">App</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">'./App.vue'</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+<span class="cm">/** 注意看！！就是这里*/</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">createMetaManager</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">meta</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">tag</span><span class="o">:</span><span class="w"> </span><span class="s1">'meta'</span><span class="p">,</span><span class="w"> </span><span class="nx">nameless</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}))</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">pinia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createPinia</span><span class="p">()</span>
+<span class="nx">pinia</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">piniaPluginPersistedstate</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">pinia</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">router</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="s1">'#app'</span><span class="p">)</span>
+</pre></div>
+
+<p>App.vue 中</p>
+<div class="code"><pre class="code literal-block"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="cp">&lt;!- 必须写 -&gt;</span>
+  <span class="p">&lt;</span><span class="nt">metainfo</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">RouterView</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span> <span class="na">lang</span><span class="o">=</span><span class="s">"tsx"</span><span class="p">&gt;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RouterView</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"vue-router"</span><span class="p">;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+
+<p>首页中加入</p>
+<div class="code"><pre class="code literal-block"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span> <span class="na">lang</span><span class="o">=</span><span class="s">"tsx"</span><span class="p">&gt;</span>
+<span class="nx">onMounted</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">getData</span><span class="p">()</span>
+<span class="w">  </span><span class="nx">useMeta</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">'蓿岩竹清 - 程序视界'</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">meta</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">'keywords'</span><span class="p">,</span><span class="w"> </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s1">'蓿岩竹清,javascript,nodejs,java,全干工程师'</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">'description'</span><span class="p">,</span><span class="w"> </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="s1">'欢迎来到蓿岩竹清，这里记录着我的思考、见闻和一些有趣的分享。希望每一篇文字都能为你带来启发或共鸣。无论你是偶然路过还是常客，都感谢你的停留。期待与你分享更多精彩内容，也欢迎常来坐坐，留下你的足迹！ 🌟'</span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+
+<p>渲染后的效果</p>
+<p><img alt="image.png" src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/1951f074a61542d0aa6b4cef7340a2ec~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5b6Q6Iul5pyo:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDIzNTc2NDE1Njg3MjI5NSJ9&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1793946626&amp;x-orig-sign=gw2M8zsolKkmtIC387HWir4a2co%3D"></p>
+<h3>4. 后台 Puppeteer 部分</h3>
+<h4>4.1 准备工作</h4>
+<div class="code"><pre class="code literal-block"><span class="c1"># 安装 pm2用来持久化运行 server 程序</span>
+npm<span class="w"> </span>install<span class="w"> </span>pm2<span class="w"> </span>-g
+
+<span class="c1"># 初始化文件夹及目录</span>
+mkdir<span class="w"> </span>spider
+<span class="nb">cd</span><span class="w"> </span>spider
+touch<span class="w"> </span>index.js
+touch<span class="w"> </span>puppeteer-pool.js
+touch<span class="w"> </span>server.js
+
+<span class="c1"># 新增依赖</span>
+npm<span class="w"> </span>init<span class="w"> </span>-y
+pnpm<span class="w"> </span>add<span class="w"> </span>puppeteer@^24.4.0
+pnpm<span class="w"> </span>add<span class="w"> </span>express@~4.16.1
+pnpm<span class="w"> </span>add<span class="w"> </span>html-minifier
+</pre></div>
+
+<h4>4.2 编写代码</h4>
+<p>/index.js</p>
+<div class="code"><pre class="code literal-block"><span class="kd">const</span><span class="w"> </span><span class="nx">puppeteer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">'puppeteer'</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">puppeteerPools</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">'./puppeteer-pool'</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">spider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">puppeteerPools</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//随机获取浏览器</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">browserWSEndpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">puppeteerPools</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">'使用的浏览器：'</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">browserWSEndpoint</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">//连接</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">browser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">puppeteer</span><span class="p">.</span><span class="nx">connect</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">browserWSEndpoint</span>
+<span class="w">    </span><span class="p">});</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">browser</span><span class="p">.</span><span class="nx">newPage</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// Navigate the page to a URL</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="kr">goto</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Set screen size</span>
+<span class="w">  </span><span class="c1">// await page.setViewport({width: 1080, height: 1024});</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">waitForSelector</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">'html'</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">htmlOuterHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">html</span><span class="o">?</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">el</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">el</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// 与 browser.close() 不同，browser.disconnect() 不会关闭浏览器或关闭任何页面。</span>
+<span class="w">  </span><span class="nx">browser</span><span class="p">.</span><span class="nx">disconnect</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">htmlOuterHTML</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">spider</span>
+</pre></div>
+
+<p>/server.js</p>
+<div class="code"><pre class="code literal-block"><span class="kd">const</span><span class="w"> </span><span class="nx">express</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">express</span><span class="p">();</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">spider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s2">"./index.js"</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">minify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">'html-minifier'</span><span class="p">).</span><span class="nx">minify</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">res</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">originalUrl</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">'/'</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">''</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">originalUrl</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"https://xuyanzhuqing.top"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">path</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'请求的完整URL：'</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">url</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">spider</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'获取html内容失败'</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// 通过minify库压缩代码</span>
+<span class="w">  </span><span class="nx">content</span><span class="o">=</span><span class="nx">minify</span><span class="p">(</span><span class="nx">content</span><span class="p">,{</span><span class="nx">removeComments</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="nx">collapseWhitespace</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="nx">minifyJS</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">minifyCSS</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="w">    </span><span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">4000</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'服务已启动！'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">closeHandler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Server closed.'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 监听 SIGINT 信号（Ctrl + C）</span>
+<span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'SIGINT'</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Received SIGINT signal. Closing server...'</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 关闭服务器</span>
+<span class="w">    </span><span class="nx">server</span><span class="p">.</span><span class="nx">close</span><span class="p">(</span><span class="nx">closeHandler</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 监听 SIGTERM 信号</span>
+<span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'SIGTERM'</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Received SIGTERM signal. Closing server...'</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">server</span><span class="p">.</span><span class="nx">close</span><span class="p">(</span><span class="nx">closeHandler</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>/puppeteer-pool.js</p>
+<div class="code"><pre class="code literal-block"><span class="kd">const</span><span class="w"> </span><span class="nx">puppeteer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">'puppeteer'</span><span class="p">)</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">MAX_BROWSER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">browserPools</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+
+<span class="c1">// 采用池的形式限制浏览器数量</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">MAX_BROWSER</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">browser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">puppeteer</span><span class="p">.</span><span class="nx">launch</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">headless</span><span class="o">:</span><span class="w"> </span><span class="s1">'shell'</span><span class="p">,</span>
+<span class="w">      </span><span class="c1">//参数</span>
+<span class="w">            </span><span class="nx">args</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s1">'--disable-gpu'</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">'--disable-dev-shm-usage'</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">'--disable-setuid-sandbox'</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">'--no-first-run'</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">'--no-sandbox'</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">'--no-zygote'</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">'--single-process'</span><span class="w"> </span><span class="c1">// 屌丝模式，不开启多进程</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">      </span><span class="c1">//一般不需要配置这条，除非启动一直报错找不到谷歌浏览器</span>
+<span class="w">            </span><span class="c1">//executablePath:'chrome.exe在你本机上的路径，例如C:/Program Files/Google/chrome.exe'</span>
+<span class="w">            </span><span class="c1">// executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">endPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">browser</span><span class="p">.</span><span class="nx">wsEndpoint</span><span class="p">()</span>
+<span class="w">    </span><span class="nx">browserPools</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">endPoint</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">main</span><span class="p">()</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">browserPools</span>
+</pre></div>
+
+<h4>4.3 安装 ubuntu 依赖</h4>
+<p>采用豆包AI 搜索的提示词： puppeteer/chrome 运行在 ubuntu 需要哪些依赖
+<a href="https://www.doubao.com/thread/wf97363a60a275548">https://www.doubao.com/thread/wf97363a60a275548</a></p>
+<h4>4.4 启动服务</h4>
+<div class="code"><pre class="code literal-block">node<span class="w"> </span>server.js
+
+<span class="c1"># 如果要长期在服务器运行</span>
+pm2<span class="w"> </span>start<span class="w"> </span><span class="s2">"node server.js"</span>
+</pre></div>
+
+<div class="code"><pre class="code literal-block"><span class="c1"># 查看 pm2 任务 id</span>
+pm2<span class="w"> </span>list
+
+<span class="c1"># 停止删除</span>
+pm2<span class="w"> </span>stop/delete<span class="w"> </span>name_or_id
+</pre></div>
+
+<p><img alt="image.png" src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/7cd0fdf4dd74433b986b048f4a9fe439~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5b6Q6Iul5pyo:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDIzNTc2NDE1Njg3MjI5NSJ9&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1793946626&amp;x-orig-sign=UmE4quCXRV5gYeMMBhqxy3qk1qc%3D">
+启动之后执行在 log 中看到 【<strong>服务已启动！</strong>】说明服务启动成功</p>
+<p>使用 pm2 执行时,执行一下命令查看 log</p>
+<div class="code"><pre class="code literal-block">pm2 log
+</pre></div>
+
+<h4>4.5 nginx 代理</h4>
+<div class="code"><pre class="code literal-block"><span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w">  </span><span class="s">Host</span><span class="w">            </span><span class="nv">$host:$proxy_port</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w">  </span><span class="s">X-Real-IP</span><span class="w">       </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w">  </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">if</span><span class="w"> </span><span class="s">(</span><span class="nv">$http_user_agent</span><span class="w"> </span><span class="p">~</span><span class="sr">*</span><span class="w"> </span><span class="s">"Baiduspider|twitterbot|facebookexternalhit|rogerbot|linkedinbot|embedly|quora</span><span class="w"> </span><span class="s">link</span><span class="w"> </span><span class="s">preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator|bingbot|Sosospider|Sogou</span><span class="w"> </span><span class="s">Pic</span><span class="w"> </span><span class="s">Spider|Googlebot|360Spider")</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kn">proxy_pass</span><span class="w">  </span><span class="s">http://172.17.0.1:4000</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">alias</span><span class="w"> </span><span class="s">/usr/share/nginx/html/</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">index</span><span class="w">  </span><span class="s">index.html</span><span class="w"> </span><span class="s">index.htm</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">try_files</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$uri/</span><span class="w"> </span><span class="s">/index.html</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>改完配置之后，测试 nginx 配置是否正确</p>
+<div class="code"><pre class="code literal-block"><span class="k">nginx</span><span class="w"> </span><span class="s">-t</span>
+<span class="s">nginx</span><span class="w"> </span><span class="s">-s</span><span class="w"> </span><span class="s">reload</span>
+</pre></div>
+
+<p>至此，我们实现了正常用户的访问，以及爬虫程序访问的全部工作</p>
+<h4>4.6 测试爬虫</h4>
+<p>百度爬虫请求头</p>
+<p>User-Agent:Mozilla/5.0 (compatible; Baiduspider/2.0; +<a href="http://www.baidu.com/search/spider.html">http://www.baidu.com/search/spider.html</a>)</p>
+<p>本地调试</p>
+<div class="code"><pre class="code literal-block"><span class="c1">## Request Duplicate</span>
+curl<span class="w"> </span><span class="s2">"http://localhost:4000/"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s1">'User-Agent: Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html'</span>
+</pre></div>
+
+<p><img alt="image.png" src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/269a5354fdb74c32b7367332aa80c4c2~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5b6Q6Iul5pyo:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDIzNTc2NDE1Njg3MjI5NSJ9&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1793946626&amp;x-orig-sign=084avHAFnJQf7EROoXwn45UWuA4%3D"></p>
+<p>不使用爬虫</p>
+<p><img alt="image.png" src="https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/9c11a2f222d74de583b971d0eb371f62~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5b6Q6Iul5pyo:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNDIzNTc2NDE1Njg3MjI5NSJ9&amp;rk3s=f64ab15b&amp;x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&amp;x-orig-expires=1793946626&amp;x-orig-sign=UNgaQSnkCP2HVIn%2BHRhIL2Ink1E%3D"></p>
+<p>可以看到不使用爬虫时，#app 中没有 dom 渲染，远端调试将 localhost:4000 换成你自己的域名即可</p>
+<h3>总结</h3>
+<ol>
+<li>前端 vue-router 必须是 history 模式，注意避坑。</li>
+<li>测试的时候一定要仔细耐心，设计多个模块的调试，比较费神。</li>
+</ol></section><aside class="postpromonav"><nav><ul class="pager hidden-print pagination">
+<li class="previous">
+                <a class="hover:pagination__link" href="../shao-nian-xing/" rel="prev" title="少年行">上一篇文章</a>
+            </li>
+            <li class="next">
+                <a class="hover:pagination__link" href="../huan-ying-lai-dao-qi-shui-yin-le-ren-xu-ruo-mu-de-bo-ke/" rel="next" title="欢迎来到汽水音乐人徐若木的博客">下一篇文章</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>评论</h2>
+                    <div data-title="Vue3+Vite使用 Puppeteer 代码零侵入进行SEO优化（SSR+Meta）" id="utterances-thread"></div>
+        <script src="https://utteranc.es/client.js" repo="lovexuruomu/lovexuruomu.github.io" issue-term="pathname" theme="preferred-color-scheme" label="comments"></script></section></article></main>
+</div>
+    </div>
+                <script src="../../assets/js/index.js"></script><script src="../../assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><script src="../../assets/js/live2d.js"></script>
+</body>
+</html>
