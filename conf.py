@@ -1436,3 +1436,6 @@ GLOBAL_CONTEXT = {
 # GLOBAL_CONTEXT as parameter when the template is about to be
 # rendered
 GLOBAL_CONTEXT_FILLER = []
+
+# body 末尾注入的自定义脚本（live2d 看板娘）
+BODY_END = '<script src="/assets/js/live2d.js"></script>'
