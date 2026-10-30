@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>徐若木的博客</title><link>https://lovexuruomu.github.io/</link><description>用我手写我心</description><atom:link href="https://lovexuruomu.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><copyright>Contents © 2026 &lt;a href="mailto:n.tesla@example.com"&gt;徐若木&lt;/a&gt; </copyright><lastBuildDate>Fri, 30 Oct 2026 02:19:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>如何在一周内将一个巨石工程实现国际化</title><link>https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/</link><dc:creator>徐若木</dc:creator><description>&lt;div&gt;&lt;p&gt;故事开始之前，先抛四个问题。放心，这里只提问，不剧透答案：&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>徐若木的博客</title><link>https://lovexuruomu.github.io/</link><description>用我手写我心</description><atom:link href="https://lovexuruomu.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>zh_cn</language><copyright>Contents © 2026 &lt;a href="mailto:n.tesla@example.com"&gt;徐若木&lt;/a&gt; </copyright><lastBuildDate>Fri, 30 Oct 2026 05:47:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>少年行</title><link>https://lovexuruomu.github.io/posts/shao-nian-xing/</link><dc:creator>徐若木</dc:creator><description>&lt;p&gt;&lt;img alt="少年行 单曲封面" src="https://p6-luna.douyinpic.com/tos-cn-i-b829550vbb/f45a668320964475bb1780b3fedde9bc~tplv-b829550vbb-15.webp"&gt;&lt;/p&gt;
+&lt;p class="music-link"&gt;&lt;a href="https://qishui.douyin.com/s/iX7kp78c/"&gt;▶ 《少年行》@汽水音乐&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class="lyrics"&gt;
+一笔一划刻在朝霞里
+锱铢必较是少年的呼吸
+学海无涯做舟楫
+以梦为马赶万里
+风吹过瀚海阑干百丈冰
+谁在等妙笔生花破晓明
+少年啊 睥睨天下
+慷慨当歌 一决高下
+（且歌且狂）
+少年啊 不负韶华
+以身为剑 何须回答
+路远才知世事如棋局
+浮云遮眼不过一时雨
+少年啊 自在潇洒
+若非生死 皆是惊吓
+（皆是惊吓）
+少年啊 休言高下
+今为同窗 明日天涯
+人生路远 世事复杂
+临行前把沉默当潇洒
+摔碎的月光也别擦
+那是你曾睥睨的天下
+少年啊 睥睨天下
+慷慨当歌 一决高下
+（且歌且狂）
+少年啊 不负韶华
+以身为剑 何须回答
+&lt;/div&gt;
+
+&lt;p&gt;这首歌写于2026年高考前夕，意在勉励学子，努力追梦，珍惜时光，珍视友谊。&lt;/p&gt;</description><category>音乐</category><guid>https://lovexuruomu.github.io/posts/shao-nian-xing/</guid><pubDate>Fri, 30 Oct 2026 03:00:00 GMT</pubDate></item><item><title>如何在一周内将一个巨石工程实现国际化</title><link>https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/</link><dc:creator>徐若木</dc:creator><description>&lt;div&gt;&lt;p&gt;故事开始之前，先抛四个问题。放心，这里只提问，不剧透答案：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;为什么语言包里有一条词条，渲染出来是「请输入 $张三」？那个多出来的 &lt;code&gt;$&lt;/code&gt; 是谁的，为什么一直没人领？&lt;/li&gt;
 &lt;li&gt;为什么有人只是想验证一下「提取脚本跑两遍，结果应该一模一样」，第二天打开仓库——802 个文件被改，4279 条新词条躺在语言包里，其中还埋着两条把业务逻辑吞掉的尸体？&lt;/li&gt;
@@ -7,4 +40,5 @@
 &lt;li&gt;为什么「切换语言」这种看起来一行代码的事，最后的正式方案是「刷新整个页面」？&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;四个问题背后是四类事故，四类事故背后是同一个真相&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/"&gt;阅读更多…&lt;/a&gt; (剩余阅读时间 6 分钟)&lt;/p&gt;&lt;/div&gt;</description><guid>https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/</guid><pubDate>Fri, 30 Oct 2026 01:59:51 GMT</pubDate></item><item><title>欢迎来到汽水音乐人徐若木的博客</title><link>https://lovexuruomu.github.io/posts/huan-ying-lai-dao-qi-shui-yin-le-ren-xu-ruo-mu-de-bo-ke/</link><dc:creator>徐若木</dc:creator><description>&lt;p&gt;Write your post here.&lt;/p&gt;</description><guid>https://lovexuruomu.github.io/posts/huan-ying-lai-dao-qi-shui-yin-le-ren-xu-ruo-mu-de-bo-ke/</guid><pubDate>Fri, 30 Oct 2026 01:47:58 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/"&gt;阅读更多…&lt;/a&gt; (剩余阅读时间 6 分钟)&lt;/p&gt;&lt;/div&gt;</description><guid>https://lovexuruomu.github.io/posts/ru-he-zai-yi-zhou-nei-jiang-yi-ge-ju-shi-gong-cheng-shi-xian-guo-ji-hua/</guid><pubDate>Fri, 30 Oct 2026 01:59:51 GMT</pubDate></item><item><title>欢迎来到汽水音乐人徐若木的博客</title><link>https://lovexuruomu.github.io/posts/huan-ying-lai-dao-qi-shui-yin-le-ren-xu-ruo-mu-de-bo-ke/</link><dc:creator>徐若木</dc:creator><description>&lt;p&gt;相逢即是有缘，陌生人，你好，我是汽水音乐人徐若木，这是我的官方博客，有什么想跟我说的，欢迎给我留言。
+&lt;img alt="博主美照" src="https://lovexuruomu.github.io/images/%E6%9C%AC%E4%BA%BA%E9%9D%93%E7%85%A7.jpg"&gt;&lt;/p&gt;</description><guid>https://lovexuruomu.github.io/posts/huan-ying-lai-dao-qi-shui-yin-le-ren-xu-ruo-mu-de-bo-ke/</guid><pubDate>Fri, 30 Oct 2026 01:47:58 GMT</pubDate></item></channel></rss>

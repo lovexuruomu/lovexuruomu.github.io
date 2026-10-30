@@ -1,0 +1,153 @@
+/* ===== 随笔分类 · 文艺书卷风 =====
+   字体通过 post_essay.tmpl 的 <link> 并行加载（见模板），此处不写 @import，避免串行阻塞渲染 */
+
+/* 日间：米白纸感 */
+.theme {
+    --primary-color: #b45309;
+    --default-color: #45302a;
+    --inverse-color: #faf6ee;
+    --card-color: #fffdf8;
+    --accent-line: #d9a05b;
+}
+
+/* 夜间：暖棕深调 */
+#dark-mode:checked ~ .theme {
+    --primary-color: #e5a868;
+    --default-color: #f2e8db;
+    --inverse-color: #2b2220;
+    --card-color: #322824;
+    --accent-line: #8a5f38;
+}
+
+/* 正文：霞鹜文楷，书卷气。fallback 用系统自带楷体占位（macOS Kaiti SC / Windows KaiTi），
+   与霞鹜文楷同为楷体风格，webfont 下载完成后切换几乎无跳动 */
+.theme .layout {
+    font-family: 'LXGW WenKai', 'Kaiti SC', 'KaiTi', 'STKaiti',
+        'Noto Serif SC', 'Songti SC', 'SimSun', Georgia, serif;
+}
+
+/* 标题：思源宋体，字距微调。fallback 用系统宋体占位（macOS Songti SC / Windows SimSun） */
+.theme h1, .theme h2, .theme h3,
+.theme h4, .theme h5, .theme h6,
+.theme .cover__title {
+    font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', Georgia, serif;
+    letter-spacing: 0.02em;
+}
+
+/* 文章卡片：纸面感，大圆角 + 柔和暖阴影 */
+.theme .content article {
+    background: var(--card-color);
+    border-radius: 12px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 4px 24px rgba(180, 83, 9, 0.07);
+}
+#dark-mode:checked ~ .theme .content article {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* 文章大标题：去掉 willy 的青绿高亮块，改为宋体大字 */
+.theme .header__title__link,
+.theme .hover\:header__title__link:hover {
+    background: transparent;
+    padding: 0;
+    color: #45302a;
+}
+#dark-mode:checked ~ .theme .header__title__link,
+#dark-mode:checked ~ .theme .hover\:header__title__link:hover {
+    color: #f2e8db;
+}
+.theme article .header__title {
+    font-size: 2rem;
+    line-height: 1.4;
+}
+
+/* meta 行：居中 + 小字距，像杂志副标题 */
+.theme .article__meta {
+    color: #a08c7a;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+.theme .article__meta__link,
+.theme .hover\:article__meta__link:hover {
+    color: #b45309;
+}
+#dark-mode:checked ~ .theme .article__meta__link,
+#dark-mode:checked ~ .theme .hover\:article__meta__link:hover {
+    color: #e5a868;
+}
+
+/* 正文字号行高 */
+.theme .e-content {
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+/* 首字下沉：杂志式开篇（用系统宋体，不依赖 webfont 加载，避免下沉字跳动） */
+.theme .e-content > p:first-of-type::first-letter {
+    font-family: 'Songti SC', 'SimSun', 'Noto Serif SC', Georgia, serif;
+    font-size: 3.2em;
+    font-weight: 500;
+    float: left;
+    line-height: 1;
+    padding: 0.06em 0.12em 0 0;
+    color: var(--primary-color);
+}
+
+/* 二级标题：左侧暖色书签条 */
+.theme .e-content h2 {
+    border-left: 4px solid var(--accent-line);
+    padding-left: 0.75rem;
+    margin-top: 2.5rem;
+}
+
+/* 引用块：暖色浅底 + 左粗边 + 圆角 */
+.theme blockquote {
+    border-left: 3px solid var(--accent-line);
+    background: rgba(217, 160, 91, 0.08);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    color: #7a5c3e;
+}
+#dark-mode:checked ~ .theme blockquote {
+    background: rgba(138, 95, 56, 0.18);
+    color: #d8c3a5;
+}
+
+/* 分隔线：居中花饰 */
+.theme hr {
+    border: none;
+    margin: 2.5rem auto;
+    text-align: center;
+}
+.theme hr::after {
+    content: '❦';
+    color: var(--accent-line);
+    font-size: 1.1rem;
+}
+
+/* 链接：hover 下划线过渡 */
+.theme a {
+    transition: color 0.2s ease;
+}
+.theme .e-content a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* 图片：柔和圆角 */
+.theme .e-content img {
+    border-radius: 8px;
+}
+
+/* 代码块：暖棕面板，与整体协调 */
+.theme pre.code,
+.theme pre.literal-block,
+.theme pre.doctest-block,
+.theme pre.math,
+.theme section pre {
+    background: #3a2f28;
+    border-color: #4a3d33;
+    color: #e8dcc8;
+    border-radius: 8px;
+}

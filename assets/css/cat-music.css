@@ -1,0 +1,187 @@
+/* ===== 汽水音乐分类 · 天青色主题 =====
+   布局特征：封面图居中圆角、歌词居中大字距、介绍段落常规排版 */
+
+/* 日间：天青如洗 */
+.theme {
+    --primary-color: #0e9d94;   /* 天青碧 */
+    --default-color: #2c4a49;
+    --inverse-color: #edf7f6;   /* 极浅青白 */
+    --card-color: #ffffff;
+    --accent-line: #7fc8c5;
+}
+
+/* 夜间：青碧深潭 */
+#dark-mode:checked ~ .theme {
+    --primary-color: #66d9d2;
+    --default-color: #cfe8e6;
+    --inverse-color: #10201f;
+    --card-color: #162827;
+    --accent-line: #2e6e6b;
+}
+
+/* 正文：清爽黑体 */
+.theme .layout {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB",
+        "Microsoft YaHei", sans-serif;
+}
+
+/* 文章卡片：青白底 + 天青描边 */
+.theme .content article {
+    background: var(--card-color);
+    border: 1px solid var(--accent-line);
+    border-radius: 14px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 6px 30px rgba(14, 157, 148, 0.10);
+}
+#dark-mode:checked ~ .theme .content article {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* 文章标题：去掉 willy 青绿高亮块，天青色大字 */
+.theme .header__title__link,
+.theme .hover\:header__title__link:hover {
+    background: transparent;
+    padding: 0;
+    color: #2c4a49;
+}
+#dark-mode:checked ~ .theme .header__title__link,
+#dark-mode:checked ~ .theme .hover\:header__title__link:hover {
+    color: #cfe8e6;
+}
+.theme article .header__title {
+    font-size: 2.1rem;
+    line-height: 1.35;
+}
+
+/* 链接与 meta：天青碧 */
+.theme a,
+.theme .article__meta__link,
+.theme .hover\:article__meta__link:hover {
+    color: var(--primary-color);
+}
+.theme .article__meta {
+    color: #5f8a87;
+}
+
+/* 正文字号行高 */
+.theme .e-content {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* 封面图：居中、大圆角、柔和投影 */
+.theme .e-content img {
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    max-width: 480px;
+    border-radius: 16px;
+    box-shadow: 0 10px 32px rgba(14, 157, 148, 0.22);
+}
+#dark-mode:checked ~ .theme .e-content img {
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 播放链接：天青色胶囊按钮（配合文章中的 <p class="music-link">） */
+.music-link {
+    text-align: center;
+    margin: -0.5rem 0 1.5rem 0;
+}
+.music-link a {
+    display: inline-block;
+    color: #0e9d94;
+    border: 1px solid #0e9d94;
+    border-radius: 9999px;
+    padding: 0.45rem 1.5rem;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.music-link a:hover {
+    background: #0e9d94;
+    color: #ffffff;
+    text-decoration: none;
+}
+#dark-mode:checked ~ .theme .music-link a {
+    color: #66d9d2;
+    border-color: #2e6e6b;
+}
+#dark-mode:checked ~ .theme .music-link a:hover {
+    background: #66d9d2;
+    color: #10201f;
+}
+
+/* 歌词区块：居中、大字距、青灰色。
+   连续换行自动分行（white-space: pre-line），写作时无需空行分段；
+   也兼容空行分段产生的 <p> 结构 */
+.lyrics {
+    white-space: pre-line;
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 2.2;
+    letter-spacing: 0.08em;
+    color: #3d6b68;
+    padding: 1.5rem 0;
+}
+.lyrics p {
+    margin: 0.2rem 0;
+}
+#dark-mode:checked ~ .theme .lyrics {
+    color: #a9d5d1;
+}
+
+/* 歌词与介绍之间的装饰分隔 */
+.lyrics::before,
+.lyrics::after {
+    content: '♪';
+    display: block;
+    color: var(--accent-line);
+    font-size: 0.9rem;
+    margin: 0.8rem 0;
+}
+
+/* 引用块：天青浅底 */
+.theme blockquote {
+    border-left: 3px solid var(--accent-line);
+    background: rgba(127, 200, 197, 0.10);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    color: #3d6b68;
+}
+#dark-mode:checked ~ .theme blockquote {
+    background: rgba(46, 110, 107, 0.25);
+    color: #a9d5d1;
+}
+
+/* 代码块：青灰面板 */
+.theme pre.code,
+.theme pre.literal-block,
+.theme pre.doctest-block,
+.theme pre.math,
+.theme section pre {
+    background: #f0f7f6;
+    border: 1px solid #c9e5e2;
+    color: #2c4a49;
+    border-radius: 8px;
+}
+#dark-mode:checked ~ .theme pre.code,
+#dark-mode:checked ~ .theme pre.literal-block,
+#dark-mode:checked ~ .theme pre.doctest-block,
+#dark-mode:checked ~ .theme pre.math,
+#dark-mode:checked ~ .theme section pre {
+    background: #14201f;
+    border-color: #2e6e6b;
+    color: #cfe8e6;
+}
+
+/* 行内代码 */
+.theme code {
+    background: rgba(14, 157, 148, 0.08);
+    color: #0e9d94;
+    border-radius: 3px;
+    padding: 0.1em 0.3em;
+}
+#dark-mode:checked ~ .theme code {
+    background: rgba(102, 217, 210, 0.12);
+    color: #66d9d2;
+}
