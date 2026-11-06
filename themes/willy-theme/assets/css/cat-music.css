@@ -70,11 +70,14 @@
     line-height: 1.8;
 }
 
-/* 封面图：居中、大圆角、柔和投影 */
+/* 封面图：居中、大圆角、柔和投影。
+   用 min(480px, 100%) 而非单独 480px：桌面封顶 480px 居中，
+   窄屏自动跟随容器收缩。直接写 max-width:480px 会覆盖主题全局的
+   img{max-width:100%} 保护，导致封面横向溢出、页面被内容撑宽 */
 .theme .e-content img {
     display: block;
     margin: 0 auto 1.5rem auto;
-    max-width: 480px;
+    max-width: min(480px, 100%);
     border-radius: 16px;
     box-shadow: 0 10px 32px rgba(14, 157, 148, 0.22);
 }
@@ -184,4 +187,18 @@
 #dark-mode:checked ~ .theme code {
     background: rgba(102, 217, 210, 0.12);
     color: #66d9d2;
+}
+
+/* 手机端（<1024px，与随笔分类同构处理）：取消主题 index.css 给 .content 的
+   左右 2rem 容器边距，并把卡片左右 3rem 收窄到 1rem，
+   避免单侧共 5rem 留白把正文挤到只剩大半屏 */
+@media (max-width: 1023px) {
+    .theme .content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .theme .content article {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
