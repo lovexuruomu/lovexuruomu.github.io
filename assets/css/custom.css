@@ -219,3 +219,63 @@
 #dark-mode:checked ~ .theme .content .listpage .postlist a:not(.listtitle) {
     color: #d1d5db;
 }
+
+/* ===== 首页装饰：贴边不规则渐变色块（仅白天模式）=====
+   选择器用 :has(.postindex) 锁定首页及其分页，列表页/文章页不受影响；
+   色块 fixed 贴视口四角、双层异色径向渐变叠出不规则边缘；
+   z-index 0 压在文字层之下（.content 提到 1），pointer-events:none 不拦点击 */
+.layout:has(.postindex)::before,
+.layout:has(.postindex)::after {
+    content: '';
+    position: fixed;
+    z-index: 0;
+    pointer-events: none;
+}
+/* 左上：湖青主色 + 青蓝副色双核，呼应站色 #38b2ac */
+.layout:has(.postindex)::before {
+    top: -14vh;
+    left: -12vw;
+    width: 62vmin;
+    height: 62vmin;
+    background:
+        radial-gradient(closest-side at 62% 58%, rgba(56, 178, 172, 0.30), rgba(56, 178, 172, 0) 78%),
+        radial-gradient(closest-side at 30% 28%, rgba(99, 179, 237, 0.22), rgba(99, 179, 237, 0) 72%);
+    animation: home-blob-drift 16s ease-in-out infinite alternate;
+}
+/* 右下：暖橙主色 + 粉霞副色对比，与左上青绿形成对角呼应 */
+.layout:has(.postindex)::after {
+    bottom: -16vh;
+    right: -12vw;
+    width: 56vmin;
+    height: 56vmin;
+    background:
+        radial-gradient(closest-side at 40% 42%, rgba(246, 173, 85, 0.26), rgba(246, 173, 85, 0) 76%),
+        radial-gradient(closest-side at 72% 68%, rgba(237, 100, 166, 0.14), rgba(237, 100, 166, 0) 70%);
+    animation: home-blob-drift 16s ease-in-out infinite alternate-reverse;
+}
+/* 正文与页头抬到色块之上，读文本不受晕染影响 */
+.layout:has(.postindex) .content,
+.layout:has(.postindex) .cover {
+    position: relative;
+    z-index: 1;
+}
+@keyframes home-blob-drift {
+    from {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate3d(4vmin, 3vmin, 0) rotate(8deg);
+    }
+}
+/* 系统开启「减弱动态效果」时静止呈现，只留颜色不留动画 */
+@media (prefers-reduced-motion: reduce) {
+    .layout:has(.postindex)::before,
+    .layout:has(.postindex)::after {
+        animation: none;
+    }
+}
+/* 夜间模式退场，保持深灰底的纯净 */
+#dark-mode:checked ~ .theme .layout:has(.postindex)::before,
+#dark-mode:checked ~ .theme .layout:has(.postindex)::after {
+    display: none;
+}

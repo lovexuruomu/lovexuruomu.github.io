@@ -151,3 +151,17 @@
     color: #e8dcc8;
     border-radius: 8px;
 }
+
+/* 手机端（<1024px，与桌面断点对齐）：去掉内容区左右留白，
+   主题 index.css 给 .content 的全局 padding 2rem + 本文件卡片 padding 3rem
+   在窄屏合计单侧约 5rem，这里取消容器边距并把卡片边距收窄到 1rem（防止文字贴屏边） */
+@media (max-width: 1023px) {
+    .theme .content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .theme .content article {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
